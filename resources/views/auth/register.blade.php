@@ -25,6 +25,7 @@
                             </div>
                         </div>
 
+
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
@@ -36,6 +37,38 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                            </div>
+                        </div>
+
+                        <!-- 性別の入力欄 -->
+                        <div class="form-group row mb-3">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label>
+                            <div class="col-md-6" style="padding-top: 8px">
+                                <input id="gender-m" type="radio" name="gender" value="male">
+                                <label for="gender-m">Male</label>
+                                <input id="gender-f" type="radio" name="gender" value="female">
+                                <label for="gender-f">Female</label>
+
+                                @if ($errors->has('gender'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- 年齢の入力欄 -->
+                        <div class="form-group row mb-3">
+                            <label for="age" class="col-md-4 col-form-label text-md-right">Age</label>
+
+                            <div class="col-md-6">
+                                <input id="age" type="number" min="1" class="form-control{{ $errors->has('age') ? ' is-invalid' : '' }}" name="age" value="{{ old('age') }}" required>
+
+                                @if ($errors->has('age'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('age') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
