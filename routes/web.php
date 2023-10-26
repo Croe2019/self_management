@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\MyHomeController\MyPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,5 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/mypage', [MyPageController::class, 'mypage'])->name('mypage');
+Route::get('/get_events', [MyPageController::class, 'getEvent']);
