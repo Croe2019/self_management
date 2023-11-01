@@ -1,18 +1,15 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'timeGridWeek',
         locale: 'ja',
         headerToolbar: {
-            left: "timeGridWeek,listWeek",
+            right: managementCrate(),
             center: "title",
-            right: "today prev,next"
+            left: "today prev,next",
         },
-        buttonText: {
-            today: '今月',
-            week: '週',
-            list: 'リスト'
-        },
+
         noEventsContent: '案件はありません',
         eventSources: [
             {
@@ -23,3 +20,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     calendar.render();
 });
+
+function managementCrate(){
+    $(".openbtn").click(function () {//ボタンがクリックされたら
+        $(this).toggleClass('active');//ボタン自身に activeクラスを付与し
+        $("#g-nav").toggleClass('panelactive');//ナビゲーションにpanelactiveクラスを付与
+    });
+
+    $("#g-nav a").click(function () {//ナビゲーションのリンクがクリックされたら
+        $(".openbtn").removeClass('active');//ボタンの activeクラスを除去し
+        $("#g-nav").removeClass('panelactive');//ナビゲーションのpanelactiveクラスも除去
+    });
+}

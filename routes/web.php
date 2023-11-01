@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\MyHomeController\MyPageController;
+use App\Http\Controllers\StatusCreateController\CreateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/mypage', [MyPageController::class, 'mypage'])->name('mypage');
-Route::get('/get_events', [MyPageController::class, 'getEvent']);
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::get('/mypage', [MyPageController::class, 'mypage'])->name('mypage');
+    Route::get('/create', [CreateController::class, 'createForm'])->name('create_form');
+    Route::get('/get_events', [MyPageController::class, 'getEvent']);
+});
